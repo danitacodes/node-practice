@@ -13,7 +13,9 @@
         <% if (blogs.length > 0) {%>
             <% blogs.forEach(blog => { %>
                 <h3 class="title"><%= blog.title %></h3>
-                <p class="snippet"><%= blog.snippet %></p>
+                <p class="snippet"><%= blog.snippet.substring(0, 100) + "..." %>
+                <a href="">Read More</a>
+                </p>
 
         <% }) %>        
        <% } %>
