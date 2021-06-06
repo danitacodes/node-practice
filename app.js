@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const Blog = require('./models/blog');
+const { render } = require('ejs');
 
 //express app
 
@@ -78,7 +79,7 @@ app.get('/blogs', (req, res) => {
 })
 
 app.post('/blogs', (req, res) => {
-    const blog = new Blog({req.body});
+    const blog = new Blog(req.body)
 
     blog.save()
     .then((result) =>{
@@ -88,6 +89,14 @@ app.post('/blogs', (req, res) => {
         console.log(err);
     })
 })
+
+app.get('/blogs/:id', (req, res) => {
+    const id = req.params.id;
+    Blog.findbyId(id)
+    .then((result) => {
+        render('details', { blog: result, title: 'Blog Details'});
+    })
+});
 
 app.get('/blogs/create', (req, res) => {
     res.render('create', { title: 'Create New Blog' });

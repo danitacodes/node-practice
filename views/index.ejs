@@ -14,7 +14,7 @@
             <% blogs.forEach(blog => { %>
                 <h3 class="title"><%= blog.title %></h3>
                 <p class="snippet"><%= blog.snippet.substring(0, 100) + "..." %>
-                <a href="">Read More</a>
+                <a class="single" href="/blogs/<%= blog._id %>">Read More</a>
                 </p>
 
         <% }) %>        
